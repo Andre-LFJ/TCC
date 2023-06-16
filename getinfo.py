@@ -224,7 +224,7 @@ def topsis(veiculo):
 
 
 
-def fcv2(new_values, placa, placasDict):
+def fcv(new_values, placa, placasDict):
     values = {}
     values['DistanciaPercorrida'] = int(new_values['DistanciaPercorrida'])
     values['TempoFuncionamento'] = float(new_values['TempoFuncionamento']) 
@@ -251,7 +251,7 @@ def fcv2(new_values, placa, placasDict):
         vmu = 1
 
     if(0 <= vmr <= 110):
-        vr = 1
+        vr = 1  
     elif(110 < vmr < 150):
         vr = 0.25
     else:
@@ -293,33 +293,36 @@ def fcv2(new_values, placa, placasDict):
     #######################################
 
     tt = values['TempoFuncionamento']
-    if(tt <= 1):
-        td = 1.0
-    elif(1 < tt <= 2):
-        td = 0.75
-    elif(2 < tt <= 5):
-        td = 0.50
-    else:
-        td = 0.25
+    # if(tt <= 1):
+    #     td = 1.0
+    # elif(1 < tt <= 2):
+    #     td = 0.75
+    # elif(2 < tt <= 5):
+    #     td = 0.50
+    # else:
+    #     td = 0.25
 
     #print(td)
+    td = math.pow(0.99, tt*30)
+
 
     #######################################
     # DISTANCIA PERCORRIDA (KM)           #
     #######################################
     
     dp = values['DistanciaPercorrida']
-    if(dp <= 10):
-        km = 1.0
-    elif(10 < dp <= 20):
-        km = 0.75
-    elif(20 < dp <= 30):
-        km = 0.50
-    else:
-        km = 0.25
+    # if(dp <= 10):
+    #     km = 1.0
+    # elif(10 < dp <= 20):
+    #     km = 0.75
+    # elif(20 < dp <= 30):
+    #     km = 0.50
+    # else:
+    #     km = 0.25
     
-    #print(td)
-
+    #print("dp = ")
+    #print(dp)
+    km = math.pow(0.9985, dp*30)
 
     #######################################
     # TEMPO CARTEIRA (TC)                 #
@@ -390,13 +393,9 @@ def fcv2(new_values, placa, placasDict):
     veiculo['m'] = m
     veiculo['av'] = av
     veiculo['i'] = i
+    veiculo['fcv'] = topsis(veiculo)
 
-    return(topsis(veiculo))
-
-
-
-
-
+    return(veiculo)
 
 
 
@@ -628,7 +627,7 @@ for placa in placas:
       placasDict['ZZZ-8888'] = [1.0, 1.0, 1.0, 1.0]
       placasDict['ZZZ-9999'] = [0.25, 0.375, 0.25, 1]
 
-    print(fcv2(carro, placa, placasDict), end=", ")
+    print(fcv(carro, placa, placasDict), end=", ")
   print("")
 
   # fcv.clear()
