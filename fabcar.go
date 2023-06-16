@@ -1,3 +1,6 @@
+
+
+
 package main
 
 import (
@@ -17,35 +20,6 @@ import (
 // SmartContract Define the Smart Contract structure
 type SmartContract struct {
 }
-
-// popular a blockchain
-// quais dados armazenar
-
-
-// velocidade (atual/media dos ultimos X minutos)
-// localização (cidade/estrada/segmento da estrada)
-// sentido(norte/sul/leste/oeste)
-// tipo do veículo (leve/pesado)
-
-// ocupantes
-
-// # autonomia
-// # tempo dirigindo
-
-
-
-//https://www.researchgate.net/profile/Paulo-Figueiras/publication/309918072_An_architecture_for_big_data_processing_on_intelligent_transportation_systems_An_application_scenario_on_highway_traffic_flows/links/60c0a0d14585157774bf4056/An-architecture-for-big-data-processing-on-intelligent-transportation-systems-An-application-scenario-on-highway-traffic-flows.pdf
-//
-//
-// armazenar o mesmo carro varias vezes (10) com velocidades e dias diferentes para analizar os dados
-// variaveis tempo e distancia percorrida
-// media de velocidade pelas variaveis acima 
-//
-// tentar implementar a função de adicionar varios carros com uma chamada do minifab
-
-// velocidade média, constancia de itinerario, idade do veiculo,  -historico de multas (aplicação, fazer uma função de probabilidade pra forjar isso)-
-// normalizar os dados
-// normalização por intervalos
 
 
 
@@ -284,9 +258,6 @@ func (S *SmartContract) queryCarsByOwner(APIstub shim.ChaincodeStubInterface, ar
 
 func (s *SmartContract) queryAllCars(APIstub shim.ChaincodeStubInterface) sc.Response {
 
-	//startKey := "CAR0"
-	//endKey := "CAR999999999"
-
 	startKey := ""
 	endKey := ""
 	
@@ -393,69 +364,6 @@ func (t *SmartContract) getHistoryForAsset(stub shim.ChaincodeStubInterface, arg
 }
 
 
-// func (s *SmartContract) initLedger2(APIstub shim.ChaincodeStubInterface) sc.Response {
-// 	cars := []Car{
-// 		Car{Placa: "AAA-0001", Make: "Toyota", Model: "Prius", Colour: "blue", Owner: "Tomoko"},
-// 		Car{Placa: "AAA-0001", Make: "Ford", Model: "Mustang", Colour: "red", Owner: "Brad"},
-// 		Car{Placa: "AAA-0001", Make: "Hyundai", Model: "Tucson", Colour: "green", Owner: "Jin Soo"},
-// 		Car{Placa: "AAA-0001", Make: "Volkswagen", Model: "Passat", Colour: "yellow", Owner: "Max"},
-// 		Car{Placa: "AAA-0001", Make: "Tesla", Model: "S", Colour: "black", Owner: "Adriana"},
-// 		Car{Placa: "AAA-0001", Make: "Peugeot", Model: "205", Colour: "purple", Owner: "Michel"},
-// 		Car{Placa: "AAA-0001", Make: "Chery", Model: "S22L", Colour: "white", Owner: "Aarav"},
-// 		Car{Placa: "AAA-0001", Make: "Fiat", Model: "Punto", Colour: "violet", Owner: "Pari"},
-// 		Car{Placa: "AAA-0001", Make: "Tata", Model: "Nano", Colour: "indigo", Owner: "Valeria"},
-// 		Car{Placa: "AAA-0001", Make: "Holden", Model: "Barina", Colour: "brown", Owner: "Shotaro"},
-// 		Car{Placa: "AAA-0001", Make: "Toyota", Model: "Prius", Colour: "blue", Owner: "Tomoko"},
-// 		Car{Placa: "AAA-0001", Make: "Ford", Model: "Mustang", Colour: "red", Owner: "Brad"},
-// 		Car{Placa: "AAA-0001", Make: "Hyundai", Model: "Tucson", Colour: "green", Owner: "Jin Soo"},
-// 		Car{Placa: "AAA-0001", Make: "Volkswagen", Model: "Passat", Colour: "yellow", Owner: "Max"},
-// 		Car{Placa: "AAA-0001", Make: "Tesla", Model: "S", Colour: "black", Owner: "Adriana"},
-// 		Car{Placa: "AAA-0001", Make: "Peugeot", Model: "205", Colour: "purple", Owner: "Michel"},
-// 		Car{Placa: "AAA-0001", Make: "Chery", Model: "S22L", Colour: "white", Owner: "Aarav"},
-// 		Car{Placa: "AAA-0001", Make: "Fiat", Model: "Punto", Colour: "violet", Owner: "Pari"},
-// 		Car{Placa: "AAA-0001", Make: "Tata", Model: "Nano", Colour: "indigo", Owner: "Valeria"},
-// 		Car{Placa: "AAA-0001", Make: "Holden", Model: "Barina", Colour: "brown", Owner: "Shotaro"},
-// 		Car{Placa: "AAA-0001", Make: "Toyota", Model: "Prius", Colour: "blue", Owner: "Tomoko"},
-// 		Car{Placa: "AAA-0001", Make: "Ford", Model: "Mustang", Colour: "red", Owner: "Brad"},
-// 		Car{Placa: "AAA-0001", Make: "Hyundai", Model: "Tucson", Colour: "green", Owner: "Jin Soo"},
-// 		Car{Placa: "AAA-0001", Make: "Volkswagen", Model: "Passat", Colour: "yellow", Owner: "Max"},
-// 		Car{Placa: "AAA-0001", Make: "Tesla", Model: "S", Colour: "black", Owner: "Adriana"},
-// 		Car{Placa: "AAA-0001", Make: "Peugeot", Model: "205", Colour: "purple", Owner: "Michel"},
-// 		Car{Placa: "AAA-0001", Make: "Chery", Model: "S22L", Colour: "white", Owner: "Aarav"},
-// 		Car{Placa: "AAA-0001", Make: "Fiat", Model: "Punto", Colour: "violet", Owner: "Pari"},
-// 		Car{Placa: "AAA-0001", Make: "Tata", Model: "Nano", Colour: "indigo", Owner: "Valeria"},
-// 		Car{Placa: "AAA-0001", Make: "Holden", Model: "Barina", Colour: "brown", Owner: "Shotaro"},
-// 		Car{Placa: "AAA-0001", Make: "Toyota", Model: "Prius", Colour: "blue", Owner: "Tomoko"},
-// 		Car{Placa: "AAA-0001", Make: "Ford", Model: "Mustang", Colour: "red", Owner: "Brad"},
-// 		Car{Placa: "AAA-0001", Make: "Hyundai", Model: "Tucson", Colour: "green", Owner: "Jin Soo"},
-// 		Car{Placa: "AAA-0001", Make: "Volkswagen", Model: "Passat", Colour: "yellow", Owner: "Max"},
-// 		Car{Placa: "AAA-0001", Make: "Tesla", Model: "S", Colour: "black", Owner: "Adriana"},
-// 		Car{Placa: "AAA-0001", Make: "Peugeot", Model: "205", Colour: "purple", Owner: "Michel"},
-// 		Car{Placa: "AAA-0001", Make: "Chery", Model: "S22L", Colour: "white", Owner: "Aarav"},
-// 		Car{Placa: "AAA-0001", Make: "Fiat", Model: "Punto", Colour: "violet", Owner: "Pari"},
-// 		Car{Placa: "AAA-0001", Make: "Tata", Model: "Nano", Colour: "indigo", Owner: "Valeria"},
-// 		Car{Placa: "AAA-0001", Make: "Holden", Model: "Barina", Colour: "brown", Owner: "Shotaro"},
-// 		Car{Placa: "AAA-0001", Make: "Toyota", Model: "Prius", Colour: "blue", Owner: "Tomoko"},
-// 		Car{Placa: "AAA-0001", Make: "Ford", Model: "Mustang", Colour: "red", Owner: "Brad"},
-// 		Car{Placa: "AAA-0001", Make: "Hyundai", Model: "Tucson", Colour: "green", Owner: "Jin Soo"},
-// 		Car{Placa: "AAA-0001", Make: "Volkswagen", Model: "Passat", Colour: "yellow", Owner: "Max"},
-// 		Car{Placa: "AAA-0001", Make: "Tesla", Model: "S", Colour: "black", Owner: "Adriana"},
-// 		Car{Placa: "AAA-0001", Make: "Peugeot", Model: "205", Colour: "purple", Owner: "Michel"},
-// 		Car{Placa: "AAA-0001", Make: "Chery", Model: "S22L", Colour: "white", Owner: "Aarav"},
-// 		Car{Placa: "AAA-0001", Make: "Fiat", Model: "Punto", Colour: "violet", Owner: "Pari"},
-// 		Car{Placa: "AAA-0001", Make: "Tata", Model: "Nano", Colour: "indigo", Owner: "Valeria"},
-// 		Car{Placa: "AAA-0001", Make: "Holden", Model: "Barina", Colour: "brown", Owner: "Shotaro"},
-// 		Car{Placa: "AAA-0001", Make: "Toyota", Model: "Prius", Colour: "blue", Owner: "Tomoko"},
-// 		Car{Placa: "AAA-0001", Make: "Ford", Model: "Mustang", Colour: "red", Owner: "Brad"},
-// 		Car{Placa: "AAA-0001", Make: "Hyundai", Model: "Tucson", Colour: "green", Owner: "Jin Soo"},
-// 		Car{Placa: "AAA-0001", Make: "Volkswagen", Model: "Passat", Colour: "yellow", Owner: "Max"},
-// 		Car{Placa: "AAA-0001", Make: "Tesla", Model: "S", Colour: "black", Owner: "Adriana"},
-// 		Car{Placa: "AAA-0001", Make: "Peugeot", Model: "205", Colour: "purple", Owner: "Michel"},
-// 		Car{Placa: "AAA-0001", Make: "Chery", Model: "S22L", Colour: "white", Owner: "Aarav"},
-// 		Car{Placa: "AAA-0001", Make: "Fiat", Model: "Punto", Colour: "violet", Owner: "Pari"},
-// 		Car{Placa: "AAA-0001", Make: "Tata", Model: "Nano", Colour: "indigo", Owner: "Valeria"},
-// 		Car{Placa: "AAA-0001", Make: "Holden", Model: "Barina", Colour: "brown", Owner: "Shotaro"},
-// 	}
 
 // 	i := 0
 // 	for i < len(cars) {
