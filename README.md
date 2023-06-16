@@ -46,3 +46,22 @@ C -Para verificar todo o histórico de um veículo, execute o comando:
 
 Onde [PLACA] é a placa do veículo, da forma:   
 ```AAA-1111```
+
+_______________________________________
+addinfo.py:
+
+No fim do arquivo existe a função main();      
+Para executar uma função, apenas retire o comentário;     
+Para a função "generateVeiculo()", 3 tipos de veículos podem ser criados:     
+Bom (ZZZ-1111)    
+Médio (ZZZ-2222)    
+Ruim (ZZZ-3333)    
+Para executar um veículo, descomente sua respectiva linha (entre 388-390) e também sua respectiva função (408-410).    
+
+
+Para a função "generateVeiculoBomRuim()", um veículo (ZZZ-3333) será gerado, começando Bom e terminando Ruim;  
+Para a função "generateVeiculoRuimBom()", um veículo (ZZZ-4444) será gerado, começando Ruim e terminando Bom;   
+
+O algoritmo está configurado para apenas printar na tela o resultado do FCV, se desejar inserir as informações na blockchain, retire o comentário da linha 111:   
+```#command = f"./minifab invoke -n fabcar -p '\"createCar\", \"{placa}\", \"{fcvatual}\", \"{new_values['DistanciaPercorrida']}\", \"{new_values['TempoFuncionamento']}\", \"{new_values['DistanciaPercorrida_Rodovia']}\", \"{new_values['TempoFuncionamento_Rodovia']}\", \"{new_values['DistanciaPercorrida_Urbana']}\", \"{new_values['TempoFuncionamento_Urbana']}\", \"{new_values['TempoHorarioPico']}\", \"{new_values['TempoNoite']}\"' "```
+
