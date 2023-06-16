@@ -1,5 +1,8 @@
 # Blockchain + FCV
 
+Todos os códigos e arquivos estão disponíveis em:   
+https://github.com/Andre-LFJ/TCC
+
 Certifique-se de ter docker CE 18.03 ou mais recente instalado;  
 
 
@@ -11,8 +14,12 @@ Certifique-se de ter docker CE 18.03 ou mais recente instalado;
 2- Para iniciar a blockchain com as configurações padrão (ou as configurações do spec.yaml), execute na pasta do minifab, o comando:   
 ```./minifab up```   
 
-3- Coloque a pasta “fabcar” dentro do diretório    
-```“../minifabric-main/vars/chaincode/”```;   
+3- Coloque a pasta “fabcar” do arquivo "fabcar.rar" dentro do diretório    
+```../vars/chaincode/```;   
+
+A estrutura dos arquivos deve ficar dessa forma:
+
+```../vars/chaincode/fabcar/go```
 
 4- Agora, na pasta do minifab, execute o comando:    
 ```minifab ccup -n fabcar -l  go -v 1.0```   
