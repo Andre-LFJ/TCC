@@ -105,15 +105,12 @@ def generate_random_values_ruim():
 
 
 def invoke_minifab_createcar(new_values, placa, placasDict):
-    #previous_values = {'DistanciaPercorrida': 0, 'TempoFuncionamento': 0, 'DistanciaPercorrida_Rodovia': 0, 'TempoFuncionamento_Rodovia': 0, 'DistanciaPercorrida_Urbana': 0, 'TempoFuncionamento_Urbana': 0, 'TempoHorarioPico': 0, 'TempoNoite': 0}
-    #new_values = generate_random_values3(previous_values)
     fcvatual = topsis(fcv(new_values, placa, placasDict))
     #print(fcvatual, end=", ")
 
     command = f"./minifab invoke -n fabcar -p '\"createCar\", \"{placa}\", \"{fcvatual}\", \"{new_values['DistanciaPercorrida']}\", \"{new_values['TempoFuncionamento']}\", \"{new_values['DistanciaPercorrida_Rodovia']}\", \"{new_values['TempoFuncionamento_Rodovia']}\", \"{new_values['DistanciaPercorrida_Urbana']}\", \"{new_values['TempoFuncionamento_Urbana']}\", \"{new_values['TempoHorarioPico']}\", \"{new_values['TempoNoite']}\"' "
     #subprocess.run(command, shell=True)
     #print(command)
-
 
     retorno = [fcvatual, new_values['DistanciaPercorrida'], new_values['TempoFuncionamento'], new_values['DistanciaPercorrida_Rodovia'], new_values['TempoFuncionamento_Rodovia'], new_values['DistanciaPercorrida_Urbana'], new_values['TempoFuncionamento_Urbana'], new_values['TempoHorarioPico'], new_values['TempoNoite']]
     
@@ -280,33 +277,36 @@ def fcv(new_values, placa, placasDict):
     #######################################
 
     tt = values['TempoFuncionamento']
-    if(tt <= 1):
-        td = 1.0
-    elif(1 < tt <= 2):
-        td = 0.75
-    elif(2 < tt <= 5):
-        td = 0.50
-    else:
-        td = 0.25
+    # if(tt <= 1):
+    #     td = 1.0
+    # elif(1 < tt <= 2):
+    #     td = 0.75
+    # elif(2 < tt <= 5):
+    #     td = 0.50
+    # else:
+    #     td = 0.25
 
     #print(td)
+    td = math.pow(0.99, tt*30)
+
 
     #######################################
     # DISTANCIA PERCORRIDA (KM)           #
     #######################################
     
     dp = values['DistanciaPercorrida']
-    if(dp <= 10):
-        km = 1.0
-    elif(10 < dp <= 20):
-        km = 0.75
-    elif(20 < dp <= 30):
-        km = 0.50
-    else:
-        km = 0.25
+    # if(dp <= 10):
+    #     km = 1.0
+    # elif(10 < dp <= 20):
+    #     km = 0.75
+    # elif(20 < dp <= 30):
+    #     km = 0.50
+    # else:
+    #     km = 0.25
     
-    #print(td)
-
+    #print("dp = ")
+    #print(dp)
+    km = math.pow(0.9985, dp*30)
 
     #######################################
     # TEMPO CARTEIRA (TC)                 #
@@ -385,7 +385,7 @@ def fcv(new_values, placa, placasDict):
 
 
 def generateVeiculo():
-    placas = ['ZZZ-3333']
+    placas = ['ZZZ-1111']
     placasDict = {}
 
     #                          tc  m    av    i                      
@@ -403,9 +403,9 @@ def generateVeiculo():
     total = 1095
     for i in range (total): 
         
-        #newValues = generate_random_values_bom()
+        newValues = generate_random_values_bom()
         #newValues = generate_random_values_medio()
-        newValues = generate_random_values_ruim()
+        #newValues = generate_random_values_ruim()
 
         #print(newValues)
         #adiciona na blockchain
